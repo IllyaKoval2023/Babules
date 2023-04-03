@@ -2,5 +2,56 @@
     ViewData["Title"] = "Create or update operations";
 }
 
+<h1>Реєстрація/Редагування інформації про транзакції</h1>
+<div class="content-wrapper">
 
-<p>Create or update operations</p>
+    <form id="dateForm" action="" method="POST">
+        <div>
+            <div class="label-wrap">
+                <label>Назва категорії</label>
+            </div>
+            <div class="label-wrap">
+                <label>Тип операції</label>
+            </div>
+            <div class="label-wrap">
+                <label>Сума</label>
+            </div>
+            <div class="label-wrap">
+                <label>Короткий опис</label>
+            </div>
+            <div class="label-wrap">
+                <label>Дата транзакції YYYY-MM-DD</label>
+            </div>
+        </div>
+        <div>
+            <div class="input-wrap">
+                <select class="select-general-style">
+                    <option value="" selected disabled>Оберіть зі списку</option>
+                    <option value="option1">Опція 1</option>
+                    <option value="option2">Опція 2</option>
+                    <option value="option3">Опція 3</option>
+                </select>
+            </div>
+            <div class="input-wrap">
+                <select class="select-general-style">
+                    <option value="" selected disabled>Оберіть зі списку</option>
+                    <option value="option1">Витрата</option>
+                    <option value="option2">Прибуток</option>
+                </select>
+            </div>
+            <div class="input-wrap">
+                <input class="input-general-style input-to-database total-input" placeholder="Введіть суму">
+            </div>
+            <div class="input-wrap">
+                <input class="input-general-style input-to-database big-input" placeholder="Введіть опис транзакції">
+            </div>
+            <div class="input-wrap">
+                <input type="text" id="dateInput" data-index="0" class="input-general-style input-to-database" placeholder="Виберіть або введіть дату" pattern="\d{4}-\d{2}-\d{2}">
+                <input type="date" id="calendar" data-index="0" class="input-general-style input-to-database hidden">
+                <button id="calendarButton" data-index="0"></button>
+            </div>
+            <button class="related-to-database-btn in-one-row">Зберегти</button>
+            <button class="related-to-database-btn in-one-row">Очистити</button>
+        </div>
+    </form>
+</div>

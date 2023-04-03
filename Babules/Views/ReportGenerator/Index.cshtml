@@ -2,5 +2,53 @@
     ViewData["Title"] = "Report generator";
 }
 
-
-<p>Report generator</p>
+<h1>Генератор звітів</h1>
+<div class="content-wrapper">
+    <form id="dateForm" action="" method="POST">
+        <div>
+            <div class="label-wrap">
+                <label>Дата початку YYYY-MM-DD</label>
+            </div>
+            <div class="label-wrap">
+                <label>Дата кінця YYYY-MM-DD</label>
+            </div>
+            <div class="label-wrap">
+                <label>Тип операції</label>
+            </div>
+            <div class="label-wrap">
+                <label>Категорія</label>
+            </div>
+        </div>
+        <div>
+            <div class="input-wrap">
+                <input type="text" id="dateInput" data-index="0" class="input-general-style input-to-database" placeholder="Виберіть або введіть дату" pattern="\d{4}-\d{2}-\d{2}">
+                <input type="date" id="calendar" data-index="0" class="input-general-style input-to-database hidden">
+                <button id="calendarButton" data-index="0"></button>
+            </div>
+            <div class="input-wrap">
+                <input type="text" id="dateInput" data-index="1" class="input-general-style input-to-database" placeholder="Виберіть або введіть дату" pattern="\d{4}-\d{2}-\d{2}">
+                <input type="date" id="calendar" data-index="1" class="input-general-style input-to-database hidden">
+                <button id="calendarButton" data-index="1"></button>
+            </div>
+            <div class="input-wrap">
+                <select class="select-general-style">
+                    <option value="" selected disabled>Оберіть зі списку</option>
+                    <option value="option1">Опція 1</option>
+                    <option value="option2">Опція 2</option>
+                    <option value="option3">Опція 3</option>
+                </select>
+            </div>
+            <div class="input-wrap">
+                <select class="select-general-style">
+                    <option value="" selected disabled>Оберіть зі списку</option>
+                    <option value="option1">Витрата</option>
+                    <option value="option2">Прибуток</option>
+                </select>
+            </div>
+            <input type="submit" class="related-to-database-btn in-one-row" value="Зберегти">
+            <button class="related-to-database-btn in-one-row">Очистити</button>
+            <button class="related-to-database-btn in-one-row green-btn" asp-controller="ReportGenerator" asp-action="Report">Графік</button>
+            <button class="related-to-database-btn in-one-row red-btn" asp-controller="ReportGenerator" asp-action="ReportByDates">По датам</button>
+        </div>
+    </form>
+</div>

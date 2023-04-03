@@ -8,5 +8,13 @@ namespace Babules.Controllers
         {
             return View();
         }
+        public IActionResult Report()
+        {
+            return View();
+        }
+        public IActionResult ReportByDates()
+        {
+            return View();
+        }
     }
 }

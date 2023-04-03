@@ -2,5 +2,26 @@
     ViewData["Title"] = "Create or update categories";
 }
 
-
-<p>Create or update categories</p>
+<h1>Реєстрація/Редагування інформації про категорію доходів / витрат</h1>
+<div class="content-wrapper">
+    <form id="dateForm" action="" method="POST">
+        <div>
+            <div class="label-wrap">
+                <label>Назва категорії</label>
+            </div>
+            <div class="label-wrap">
+                <label>Короткий опис</label>
+            </div>
+        </div>
+        <div>
+            <div class="input-wrap">
+                <input class="input-general-style input-to-database" placeholder="Введіть назву категорії">
+            </div>
+            <div class="input-wrap">
+                <input class="input-general-style input-to-database big-input" placeholder="Введіть короткий опис">
+            </div>
+            <button class="related-to-database-btn in-one-row">Зберегти</button>
+            <button class="related-to-database-btn in-one-row">Очистити</button>
+        </div>
+    </form>
+</div>
