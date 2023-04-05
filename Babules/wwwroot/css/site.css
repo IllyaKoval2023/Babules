@@ -18,8 +18,16 @@ h1 {
     padding-left: 0;
 }
 
+h2 {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px;
+    padding-left: 0;
+}
+
 .container {
     padding: 20px;
+    margin: 0 auto;
 }
 
 .navbar {
@@ -264,7 +272,7 @@ tr:nth-child(odd) {
     display: inline-block;
 }
 
-#dateForm {
+form {
     display: flex;
     padding: 0 60px 0 60px;
 }
@@ -305,3 +313,43 @@ tr:nth-child(odd) {
     #calendarButton:hover {
         cursor: pointer;
     }
+
+
+
+
+
+
+
+.table-wrap {
+    margin-top: 0;
+}
+
+#total-sum {
+    font-weight: bold;
+}
+
+.intersecting-line {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding-top: 50px;
+    border-top: 2px solid #B6B6B6;
+}
+
+.graph-wrapper {
+    position: relative;
+    margin-left: 10vw;
+    min-height: 30vw;
+    width: 40vw;
+    background-color: red;
+}
+
+.graph-menu {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    background-color: #000;
+}

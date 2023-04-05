@@ -2,8 +2,31 @@
     ViewData["Title"] = "Report";
 }
 
+
 <h1>Звіт за період:</h1>
 <h2>test</h2>
-<div class="content-wrapper">
-    test
+<div class="intersecting-line">
+    <div class="content-wrapper table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Категорія</th>
+                    <th>Сума</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+            </tbody>
+            <tr>
+                <td colspan="2" id="total-sum">Всього:</td>
+            </tr>
+        </table>
+    </div>
+    <div class="graph-wrapper">
+        <canvas id="myChart"></canvas>
+        <div class="graph-menu"></div>
+    </div>
 </div>

@@ -1,27 +1,29 @@
-﻿@{
+﻿@model Category
+
+@{
     ViewData["Title"] = "Create or update categories";
 }
 
 <h1>Реєстрація/Редагування інформації про категорію доходів / витрат</h1>
 <div class="content-wrapper">
-    <form id="dateForm" action="" method="POST">
+    <form asp-action="CreateOrUpdate" asp-controller="Category" method="post">
         <div>
             <div class="label-wrap">
-                <label>Назва категорії</label>
+                <label asp-for="Name">Назва категорії</label>
             </div>
             <div class="label-wrap">
-                <label>Короткий опис</label>
+                <label asp-for="Description">Короткий опис</label>
             </div>
         </div>
         <div>
             <div class="input-wrap">
-                <input class="input-general-style input-to-database" placeholder="Введіть назву категорії">
+                <input asp-for="Name" class="input-general-style input-to-database" placeholder="Введіть назву категорії">
             </div>
             <div class="input-wrap">
-                <input class="input-general-style input-to-database big-input" placeholder="Введіть короткий опис">
+                <input asp-for="Description" class="input-general-style input-to-database big-input" placeholder="Введіть короткий опис">
             </div>
-            <button class="related-to-database-btn in-one-row">Зберегти</button>
-            <button class="related-to-database-btn in-one-row">Очистити</button>
+            <button type="submit" class="related-to-database-btn in-one-row">Зберегти</button>
+            <button type="reset" class="related-to-database-btn in-one-row">Очистити</button>
         </div>
     </form>
 </div>

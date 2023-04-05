@@ -45,8 +45,8 @@
                     <option value="option2">Прибуток</option>
                 </select>
             </div>
-            <input type="submit" class="related-to-database-btn in-one-row" value="Зберегти">
-            <button class="related-to-database-btn in-one-row">Очистити</button>
+            <input type="submit" class="related-to-database-btn in-one-row" value="Згенерувати">
+            <button class="related-to-database-btn in-one-row" asp-controller="ReportGenerator" asp-action="Index">Очистити</button>
             <button class="related-to-database-btn in-one-row green-btn" asp-controller="ReportGenerator" asp-action="Report">Графік</button>
             <button class="related-to-database-btn in-one-row red-btn" asp-controller="ReportGenerator" asp-action="ReportByDates">По датам</button>
         </div>

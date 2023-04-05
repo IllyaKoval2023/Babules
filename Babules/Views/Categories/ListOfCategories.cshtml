@@ -2,6 +2,8 @@
     ViewData["Title"] = "List of categories";
 }
 
+@model List<Babules.Models.Category>
+
 <h1>Категорії витрат / доходів</h1>
 <div class="content-wrapper">
     <input class="input-general-style search" type="text" placeholder="Введіть перші літери назви категорії">
@@ -15,40 +17,34 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><div class="center">1</div></td>
-                <td>test</td>
-                <td>test test test test test test test test test test test test test test test</td>
-                <td>
-                    <div class="center">
+            @if (Model != null)
+            {
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td>@category.Id</td>
+                        <td>@category.Name</td>
+                        <td>@category.Description</td>
+                        <td>
+                            <button class="table-btn edit-btn" asp-action="CreateAndUpdate" asp-route-id="@category.Id">Редагувати</button> |
+                            <button class="table-btn delete-btn" asp-action="Delete" asp-route-id="@category.Id">Видалити</button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>0</td>
+                    <td>Ваша таблиця пуста</td>
+                    <td>Натисніть кнопку "Додати нову категорію"</td>
+                    <td>
                         <button class="table-btn edit-btn"></button>
                         <button class="table-btn delete-btn"></button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><div class="center">2</div></td>
-                <td>test</td>
-                <td>test</td>
-                <td>
-                    <div class="center">
-                        <button class="table-btn edit-btn"></button>
-                        <button class="table-btn delete-btn"></button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><div class="center">3</div></td>
-                <td>test</td>
-                <td>test</td>
-                <td>
-                    <div class="center">
-                        <button class="table-btn edit-btn"></button>
-                        <button class="table-btn delete-btn"></button>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
-<button class="related-to-database-btn">Додати нову категорію</button>
+<a class="related-to-database-btn" asp-controller="Categories" asp-action="CreateAndUpdate">Додати нову категорію</a>

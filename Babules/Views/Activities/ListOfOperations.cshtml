@@ -2,13 +2,16 @@
     ViewData["Title"] = "List of operations";
 }
 
+@model List<Operations>
+
 <h1>Транзакції</h1>
 <div class="content-wrapper">
     <select class="select-general-style select-category">
         <option value="" selected disabled>Оберіть зі списку</option>
-        <option value="option1">Опція 1</option>
-        <option value="option2">Опція 2</option>
-        <option value="option3">Опція 3</option>
+        @foreach (var category in ViewBag.Categories)
+        {
+            <option value="@category.Id">@category.Name</option>
+        }
     </select>
     <table>
         <thead>
@@ -23,49 +26,22 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><div class="center">1</div></td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test test test test test test test test test test test test test test test</td>
-                <td>
-                    <div class="center">
-                        <button class="table-btn edit-btn"></button>
-                        <button class="table-btn delete-btn"></button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><div class="center">2</div></td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>
-                    <div class="center">
-                        <button class="table-btn edit-btn"></button>
-                        <button class="table-btn delete-btn"></button>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><div class="center">3</div></td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>test</td>
-                <td>
-                    <div class="center">
-                        <button class="table-btn edit-btn"></button>
-                        <button class="table-btn delete-btn"></button>
-                    </div>
-                </td>
-            </tr>
+            @foreach (var operation in Model)
+            {
+                <tr>
+                    <td>@operation.Id</td>
+                    <td>@operation.Category.Name</td>
+                    <td>@operation.OperationType</td>
+                    <td>@operation.Amount</td>
+                    <td>@operation.Date.ToShortDateString()</td>
+                    <td>@operation.Description</td>
+                    <td>
+                        <button class="table-btn edit-btn" asp-action="CreateAndUpdate" asp-route-id="@operation.Id">Редагувати</button> |
+                        <button class="table-btn delete-btn" asp-action="Delete" asp-route-id="@operation.Id">Видалити</button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
-<button class="related-to-database-btn">Додати нову транзакцію</button>
+<button class="related-to-database-btn" asp-action="CreateAndUpdate">Додати нову транзакцію</button>
