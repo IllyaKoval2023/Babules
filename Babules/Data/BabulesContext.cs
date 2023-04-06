@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Babules.Data
 {
-    public class OperationsContext : DbContext
+    public class BabulesContext : DbContext
     {
-        public OperationsContext(DbContextOptions<OperationsContext> options) : base(options)
+        public BabulesContext(DbContextOptions<BabulesContext> options) : base(options)
         {
         }
 

@@ -6,8 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<CategoriesContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FinanseManagerConnectionStrings")));
-builder.Services.AddDbContext<OperationsContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FinanseManagerConnectionStrings")));
+builder.Services.AddDbContext<BabulesContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("FinanseManagerConnectionStrings")));
 
 var app = builder.Build();
 

@@ -7,10 +7,11 @@
 <h1>Транзакції</h1>
 <div class="content-wrapper">
     <select class="select-general-style select-category">
-        @if (ViewBag.Categories != null)
+        @if (ViewData["Categories"] != null)
         {
+            var categories = ViewData["Categories"] as List<Babules.Models.Category>;
             <option value="0">Без фільтру</option>
-            @foreach (var category in ViewBag.Categories)
+            @foreach (var category in categories)
             {
                 <option value="@category.Id">@category.Name</option>
             }
@@ -45,8 +46,10 @@
                         <td>@operation.TransactionDate.ToShortDateString()</td>
                         <td>@operation.Description</td>
                         <td>
-                            <button class="table-btn edit-btn" asp-action="CreateAndUpdate" asp-route-id="@operation.Id"></button> |
-                            <button class="table-btn delete-btn" asp-action="Delete" asp-route-id="@operation.Id"></button>
+                            <a class="table-btn edit-btn" asp-action="CreateAndUpdate" asp-route-id="@operation.Id"></a>
+                            <form method="post" asp-action="Delete" asp-controller="Activities" asp-route-id="@operation.Id" onsubmit="return confirm('Ви впевнені, що хочете видалити цю категорію?')">
+                                <button type="submit" class="table-btn delete-btn"></button>
+                            </form>
                         </td>
                     </tr>
                 }
@@ -61,8 +64,8 @@
                     <td>TransactionDate</td>
                     <td>Description</td>
                     <td>
-                        <button class="table-btn edit-btn" asp-action="CreateAndUpdate"></button>
-                        <button class="table-btn delete-btn" asp-action="Delete"></button>
+                        <button class="table-btn edit-btn"></button>
+                        <button class="table-btn delete-btn"></button>
                     </td>
                 </tr>
             }

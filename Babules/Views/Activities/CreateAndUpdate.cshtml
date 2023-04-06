@@ -6,7 +6,8 @@
 
 <h1>Реєстрація/Редагування інформації про транзакції</h1>
 <div class="content-wrapper">
-    <form asp-action="CreateOrUpdate" asp-controller="Operations" method="post">
+    <form class="form-style" asp-action="CreateAndUpdate" asp-controller="Activities" method="post">
+        <input asp-for="Id" type="hidden">
         <div>
             <div class="label-wrap">
                 <label asp-for="CategoryId">Назва категорії</label>
@@ -26,25 +27,30 @@
         </div>
         <div>
             <div class="input-wrap">
-                <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))" class="select-general-style">
-                    <option value="" selected disabled>Оберіть зі списку</option>
-                </select>
+                @if (ViewBag.Categories != null)
+                {
+                    <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))" class="select-general-style">
+                        <option value="" selected disabled>Оберіть зі списку</option>
+                    </select>
+                }
+                else
+                {
+                    <select class="select-general-style">
+                        <option value="" selected disabled>Список пустий</option>
+                    </select>
+                }
             </div>
             <div class="input-wrap">
-                <select asp-for="OperationType" class="select-general-style">
-                    <option value="" selected disabled>Оберіть зі списку</option>
-                    <option value="Expense">Витрата</option>
-                    <option value="Income">Прибуток</option>
-                </select>
+                <input asp-for="OperationType" class="input-general-style input-to-database" placeholder="Введіть тип операції">
             </div>
             <div class="input-wrap">
-                <input asp-for="Amount" class="input-general-style input-to-database total-input" placeholder="Введіть суму">
+                <input asp-for="Amount" type="number" class="input-general-style input-to-database total-input" placeholder="Введіть суму" value="">
             </div>
             <div class="input-wrap">
                 <input asp-for="Description" class="input-general-style input-to-database big-input" placeholder="Введіть опис транзакції">
             </div>
             <div class="input-wrap">
-                <input asp-for="TransactionDate" type="text" id="dateInput" data-index="0" class="input-general-style input-to-database" placeholder="Виберіть або введіть дату" pattern="\d{4}-\d{2}-\d{2}">
+                <input asp-for="TransactionDate" type="text" id="dateInput" data-index="0" class="input-general-style input-to-database" placeholder="Виберіть або введіть дату" pattern="\d{4}-\d{2}-\d{2}" value="">
                 <input type="date" id="calendar" data-index="0" class="input-general-style input-to-database hidden">
                 <button id="calendarButton" data-index="0"></button>
             </div>

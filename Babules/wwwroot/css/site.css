@@ -190,7 +190,9 @@ tr:nth-child(odd) {
 
 .table-btn {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     height: 40px;
     width: 48px;
     border: 1px solid #B6B6B6;

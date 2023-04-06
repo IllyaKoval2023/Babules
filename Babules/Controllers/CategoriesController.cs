@@ -1,4 +1,5 @@
-﻿using Babules.Models;
+﻿using Babules.Data;
+using Babules.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -7,9 +8,9 @@ namespace Babules.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly CategoriesContext _context;
+        private readonly BabulesContext _context;
 
-        public CategoriesController(CategoriesContext context)
+        public CategoriesController(BabulesContext context)
         {
             _context = context;
         }
@@ -42,7 +43,6 @@ namespace Babules.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAndUpdate(int? id, Category category)
         {
             if (ModelState.IsValid)
