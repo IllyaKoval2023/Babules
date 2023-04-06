@@ -190,10 +190,10 @@ tr:nth-child(odd) {
 
 .table-btn {
     position: relative;
-    height: 2.5rem;
-    width: 3rem;
+    display: inline-block;
+    height: 40px;
+    width: 48px;
     border: 1px solid #B6B6B6;
-    padding: 0;
     border-radius: 5px;
     background-image: linear-gradient(to top, #c2c2c2, #e9e9e9)
 }
@@ -230,6 +230,7 @@ tr:nth-child(odd) {
     color: #fff;
     padding: 0.6rem 0.8rem 0.6rem 0.8rem;
     margin-top: 20px;
+    text-decoration: none;
     border-radius: 5px;
     border: 1px solid #03549a;
     border-radius: 5px;
@@ -237,9 +238,17 @@ tr:nth-child(odd) {
     background-image: linear-gradient(to top, #045bc8, #1891d0);
 }
 
-    .related-to-database-btn:hover {
-        cursor: pointer;
-    }
+.add-categories-btn {
+    width: 195px;
+}
+
+.add-operations-btn {
+    width: 206px;
+}
+
+.related-to-database-btn:hover {
+    cursor: pointer;
+}
 
     .related-to-database-btn:active {
         background-image: linear-gradient(to top, #686cc7, #4478e9);
@@ -272,7 +281,7 @@ tr:nth-child(odd) {
     display: inline-block;
 }
 
-form {
+.form-style {
     display: flex;
     padding: 0 60px 0 60px;
 }

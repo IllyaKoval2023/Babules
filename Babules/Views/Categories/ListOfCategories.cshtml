@@ -26,8 +26,10 @@
                         <td>@category.Name</td>
                         <td>@category.Description</td>
                         <td>
-                            <button class="table-btn edit-btn" asp-action="CreateAndUpdate" asp-route-id="@category.Id">Редагувати</button> |
-                            <button class="table-btn delete-btn" asp-action="Delete" asp-route-id="@category.Id">Видалити</button>
+                            <a class="table-btn edit-btn" asp-action="CreateAndUpdate" asp-route-id="@category.Id"></a>
+                            <form method="post" asp-action="Delete" asp-controller="Categories" asp-route-id="@category.Id" style="display: inline;" onsubmit="return confirm('Ви впевнені, що хочете видалити цю категорію?')">
+                                <button type="submit" class="table-btn delete-btn"></button>
+                            </form>
                         </td>
                     </tr>
                 }
@@ -47,4 +49,4 @@
         </tbody>
     </table>
 </div>
-<a class="related-to-database-btn" asp-controller="Categories" asp-action="CreateAndUpdate">Додати нову категорію</a>
+<a class="related-to-database-btn add-categories-btn" asp-controller="Categories" asp-action="CreateAndUpdate">Додати нову категорію</a>

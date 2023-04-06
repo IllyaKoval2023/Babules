@@ -2,56 +2,54 @@
     ViewData["Title"] = "Create or update operations";
 }
 
+@model Babules.Models.Operations
+
 <h1>Реєстрація/Редагування інформації про транзакції</h1>
 <div class="content-wrapper">
-
-    <form id="dateForm" action="" method="POST">
+    <form asp-action="CreateOrUpdate" asp-controller="Operations" method="post">
         <div>
             <div class="label-wrap">
-                <label>Назва категорії</label>
+                <label asp-for="CategoryId">Назва категорії</label>
             </div>
             <div class="label-wrap">
-                <label>Тип операції</label>
+                <label asp-for="OperationType">Тип операції</label>
             </div>
             <div class="label-wrap">
-                <label>Сума</label>
+                <label asp-for="Amount">Сума</label>
             </div>
             <div class="label-wrap">
-                <label>Короткий опис</label>
+                <label asp-for="Description">Короткий опис</label>
             </div>
             <div class="label-wrap">
-                <label>Дата транзакції YYYY-MM-DD</label>
+                <label asp-for="TransactionDate">Дата транзакції YYYY-MM-DD</label>
             </div>
         </div>
         <div>
             <div class="input-wrap">
-                <select class="select-general-style">
+                <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))" class="select-general-style">
                     <option value="" selected disabled>Оберіть зі списку</option>
-                    <option value="option1">Опція 1</option>
-                    <option value="option2">Опція 2</option>
-                    <option value="option3">Опція 3</option>
                 </select>
             </div>
             <div class="input-wrap">
-                <select class="select-general-style">
+                <select asp-for="OperationType" class="select-general-style">
                     <option value="" selected disabled>Оберіть зі списку</option>
-                    <option value="option1">Витрата</option>
-                    <option value="option2">Прибуток</option>
+                    <option value="Expense">Витрата</option>
+                    <option value="Income">Прибуток</option>
                 </select>
             </div>
             <div class="input-wrap">
-                <input class="input-general-style input-to-database total-input" placeholder="Введіть суму">
+                <input asp-for="Amount" class="input-general-style input-to-database total-input" placeholder="Введіть суму">
             </div>
             <div class="input-wrap">
-                <input class="input-general-style input-to-database big-input" placeholder="Введіть опис транзакції">
+                <input asp-for="Description" class="input-general-style input-to-database big-input" placeholder="Введіть опис транзакції">
             </div>
             <div class="input-wrap">
-                <input type="text" id="dateInput" data-index="0" class="input-general-style input-to-database" placeholder="Виберіть або введіть дату" pattern="\d{4}-\d{2}-\d{2}">
+                <input asp-for="TransactionDate" type="text" id="dateInput" data-index="0" class="input-general-style input-to-database" placeholder="Виберіть або введіть дату" pattern="\d{4}-\d{2}-\d{2}">
                 <input type="date" id="calendar" data-index="0" class="input-general-style input-to-database hidden">
                 <button id="calendarButton" data-index="0"></button>
             </div>
-            <button class="related-to-database-btn in-one-row">Зберегти</button>
-            <button class="related-to-database-btn in-one-row">Очистити</button>
+            <button type="submit" class="related-to-database-btn in-one-row">Зберегти</button>
+            <button type="reset" class="related-to-database-btn in-one-row">Очистити</button>
         </div>
     </form>
 </div>

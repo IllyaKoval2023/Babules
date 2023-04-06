@@ -1,62 +1,80 @@
-﻿using Azure.Core;
-using Babules.Models;
+﻿using Babules.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Babules.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly CategoriesContext _db;
+        private readonly CategoriesContext _context;
 
-        public CategoriesController(CategoriesContext db)
+        public CategoriesController(CategoriesContext context)
         {
-            _db = db;
-        }
-
-        public IActionResult ListOfCategories()
-        {
-            return View();
-        }
-
-        public IActionResult CreateOrUpdate()
-        {
-            return View();
+            _context = context;
         }
 
         [HttpGet]
-        public IActionResult CreateAndUpdate()
+        public async Task<IActionResult> ListOfCategories()
         {
-            return View();
+            var categories = await _context.Categories.ToListAsync();
+            return View(categories);
         }
-        /*
+
+        [HttpGet]
+        public IActionResult CreateAndUpdate(int? id)
+        {
+            if (id == null)
+            {
+                // Create new category
+                return View(new Category());
+            }
+            else
+            {
+                // Update existing category
+                var category = _context.Categories.Find(id);
+                if (category == null)
+                {
+                    return NotFound();
+                }
+                return View(category);
+            }
+        }
+
         [HttpPost]
-        public IActionResult CreateOrUpdate(Category category)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAndUpdate(int? id, Category category)
         {
             if (ModelState.IsValid)
             {
-                if (category.Id == 0)
+                if (id == null)
                 {
-                    _db.Categories.Add(category);
+                    // Create new category
+                    _context.Categories.Add(category);
                 }
                 else
                 {
-                    _db.Categories.Update(category);
+                    // Update existing category
+                    _context.Categories.Update(category);
                 }
-                _db.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(ListOfCategories));
             }
             return View(category);
-        }*/
+        }
+
         [HttpPost]
-        public IActionResult CreateAndUpdate(AddOrUpdateCategoryViewModel request)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
         {
-            var category = new Category()
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null)
             {
-                Id = request.Id,
-                Name = request.Name,
-                Description = request.Description
-            };
-            return View(category);
+                return NotFound();
+            }
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(ListOfCategories));
         }
     }
 }

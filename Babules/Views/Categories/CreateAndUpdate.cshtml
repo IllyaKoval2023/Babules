@@ -1,4 +1,4 @@
-﻿@model Category
+﻿@model Babules.Models.Category
 
 @{
     ViewData["Title"] = "Create or update categories";
@@ -6,7 +6,8 @@
 
 <h1>Реєстрація/Редагування інформації про категорію доходів / витрат</h1>
 <div class="content-wrapper">
-    <form asp-action="CreateOrUpdate" asp-controller="Category" method="post">
+    <form class="form-style" asp-action="CreateAndUpdate" asp-controller="Categories" method="post">
+        <input asp-for="Id" type="hidden">
         <div>
             <div class="label-wrap">
                 <label asp-for="Name">Назва категорії</label>

@@ -5,6 +5,7 @@ namespace Babules.Models
 {
     public class Operations
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -14,7 +15,7 @@ namespace Babules.Models
 
         public string OperationType { get; set; }
         public decimal Amount { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime TransactionDate { get; set; }
         public string Description { get; set; }
     }
 }

@@ -2,15 +2,22 @@
     ViewData["Title"] = "List of operations";
 }
 
-@model List<Operations>
+@model List<Babules.Models.Operations>
 
 <h1>Транзакції</h1>
 <div class="content-wrapper">
     <select class="select-general-style select-category">
-        <option value="" selected disabled>Оберіть зі списку</option>
-        @foreach (var category in ViewBag.Categories)
+        @if (ViewBag.Categories != null)
         {
-            <option value="@category.Id">@category.Name</option>
+            <option value="0">Без фільтру</option>
+            @foreach (var category in ViewBag.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        }
+        else
+        {
+            <option value="0">Без фільтру</option>
         }
     </select>
     <table>
@@ -26,22 +33,40 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var operation in Model)
+            @if (Model != null)
+            {
+                @foreach (var operation in Model)
+                {
+                    <tr>
+                        <td>@operation.Id</td>
+                        <td>@operation.Category.Name</td>
+                        <td>@operation.OperationType</td>
+                        <td>@operation.Amount</td>
+                        <td>@operation.TransactionDate.ToShortDateString()</td>
+                        <td>@operation.Description</td>
+                        <td>
+                            <button class="table-btn edit-btn" asp-action="CreateAndUpdate" asp-route-id="@operation.Id"></button> |
+                            <button class="table-btn delete-btn" asp-action="Delete" asp-route-id="@operation.Id"></button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td>@operation.Id</td>
-                    <td>@operation.Category.Name</td>
-                    <td>@operation.OperationType</td>
-                    <td>@operation.Amount</td>
-                    <td>@operation.Date.ToShortDateString()</td>
-                    <td>@operation.Description</td>
+                    <td>Id</td>
+                    <td>Category.Name</td>
+                    <td>OperationType</td>
+                    <td>Amount</td>
+                    <td>TransactionDate</td>
+                    <td>Description</td>
                     <td>
-                        <button class="table-btn edit-btn" asp-action="CreateAndUpdate" asp-route-id="@operation.Id">Редагувати</button> |
-                        <button class="table-btn delete-btn" asp-action="Delete" asp-route-id="@operation.Id">Видалити</button>
+                        <button class="table-btn edit-btn" asp-action="CreateAndUpdate"></button>
+                        <button class="table-btn delete-btn" asp-action="Delete"></button>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-<button class="related-to-database-btn" asp-action="CreateAndUpdate">Додати нову транзакцію</button>
+<a class="related-to-database-btn add-operations-btn" asp-controller="Activities" asp-action="CreateAndUpdate">Додати нову транзакцію</a>
